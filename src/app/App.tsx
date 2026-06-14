@@ -5,7 +5,7 @@ import { HomePage } from '@/pages/HomePage';
 export function App() {
   return (
     <HelmetProvider>
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
         <Routes>
           <Route path="/" element={<HomePage />} />
         </Routes>
