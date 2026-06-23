@@ -5,6 +5,7 @@ import { ThinLine } from '@/components/ui/ThinLine';
 import { PracticesOrbitGraphic } from '@/components/radar/PracticesOrbitGraphic';
 import { Reveal } from '@/components/ui/Reveal';
 import { useInView } from '@/hooks/useInView';
+import { assetUrl } from '@/lib/utils';
 
 export function PracticesArchitecture() {
   const { ref, isInView } = useInView<HTMLDivElement>();
@@ -38,6 +39,16 @@ export function PracticesArchitecture() {
                 <p className="mt-2 font-mono text-xs uppercase tracking-[0.1em] text-stone">
                   {practice.director}
                 </p>
+                {practice.photo && (
+                  <div className="mt-4 aspect-[4/5] max-w-[200px] overflow-hidden border border-champagne/20">
+                    <img
+                      src={assetUrl(practice.photo)}
+                      alt={practice.director}
+                      className="h-full w-full object-cover object-top"
+                      loading="lazy"
+                    />
+                  </div>
+                )}
                 {practice.education && (
                   <div className="mt-4">
                     <p className="font-mono text-xs uppercase tracking-[0.1em] text-champagne/80">

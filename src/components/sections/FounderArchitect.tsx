@@ -4,6 +4,7 @@ import { Heading, BodyText } from '@/components/ui/Typography';
 import { Button } from '@/components/ui/Button';
 import { Reveal } from '@/components/ui/Reveal';
 import { useInView } from '@/hooks/useInView';
+import { assetUrl } from '@/lib/utils';
 
 export function FounderArchitect() {
   const { ref, isInView } = useInView<HTMLDivElement>();
@@ -12,17 +13,17 @@ export function FounderArchitect() {
     <Section id={founderContent.meta.id} theme="light" className="bg-ivory-soft">
       <div ref={ref} className="grid items-start gap-12 lg:grid-cols-[280px_1fr]">
         <Reveal visible={isInView}>
-          <div
-            className="aspect-[3/4] w-full max-w-[280px] border border-champagne/25 bg-taupe/10"
-            role="img"
-            aria-label={founderContent.portraitAlt}
-          >
-            <div className="flex h-full items-end p-6">
-              <p className="font-mono text-label uppercase tracking-[0.12em] text-stone">
-                {founderContent.portraitLabel}
-              </p>
-            </div>
+          <div className="aspect-[3/4] w-full max-w-[280px] overflow-hidden border border-champagne/25 bg-taupe/10">
+            <img
+              src={assetUrl(founderContent.portraitSrc)}
+              alt={founderContent.portraitAlt}
+              className="h-full w-full object-cover object-top"
+              loading="lazy"
+            />
           </div>
+          <p className="mt-3 font-mono text-label uppercase tracking-[0.12em] text-stone">
+            {founderContent.portraitLabel}
+          </p>
         </Reveal>
 
         <div>

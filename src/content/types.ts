@@ -49,6 +49,7 @@ export interface PracticeCard {
   description: string;
   education?: string;
   experience?: string[];
+  photo?: string;
 }
 
 export interface FormFieldOption {

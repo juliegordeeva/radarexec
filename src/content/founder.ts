@@ -11,6 +11,7 @@ export const founderContent = {
   ],
   portraitLabel: 'Юлия Гордеева',
   portraitAlt: 'Yulia Gordeeva RADAR EXECUTIVE',
+  portraitSrc: 'images/yulia-gordeeva.png',
   schemeLabel: 'Задача → сборка практик → формат',
   ctas: [{ label: 'Обсудить, какая команда нужна под вашу ситуацию', variant: 'secondary' }] satisfies CTA[],
 };
