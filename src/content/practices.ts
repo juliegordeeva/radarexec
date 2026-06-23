@@ -58,6 +58,7 @@ export const practicesContent = {
       number: '04',
       title: 'Оценка эффективности бизнеса',
       director: 'Директор разработки: Валерия Липова',
+      photo: 'images/valeria-lipova.jpg',
       education: 'Юрист, Продюсер',
       experience: [
         'более 10 лет CBDO / Head of E-commerce. Десятки проектов в e-com, travel tech, B2B, e-grocery и маркетплейсах: Яндекс, МТС Travel, Moldretail Group.',
