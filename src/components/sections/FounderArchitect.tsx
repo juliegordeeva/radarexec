@@ -15,11 +15,11 @@ export function FounderArchitect() {
           <div
             className="aspect-[3/4] w-full max-w-[280px] border border-champagne/25 bg-taupe/10"
             role="img"
-            aria-label="Yulia Gordeeva RADAR EXEC"
+            aria-label={founderContent.portraitAlt}
           >
             <div className="flex h-full items-end p-6">
               <p className="font-mono text-label uppercase tracking-[0.12em] text-stone">
-                Стратегический архитектор
+                {founderContent.portraitLabel}
               </p>
             </div>
           </div>
@@ -39,7 +39,7 @@ export function FounderArchitect() {
 
           <Reveal visible={isInView} delay={400} className="mt-10">
             <div className="mb-10 border border-champagne/20 p-6 font-mono text-xs uppercase tracking-[0.1em] text-stone">
-              Задача → сборка практик → формат
+              {founderContent.schemeLabel}
             </div>
             {founderContent.ctas?.map((cta) => (
               <Button key={cta.label} variant="secondary" theme="light" href="#contact">

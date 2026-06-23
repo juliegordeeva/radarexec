@@ -5,7 +5,7 @@ export const formContent = {
   meta: { id: 'contact', label: 'Контакт' },
   headline: 'Коротко опишите управленческую задачу',
   microcopy:
-    'Мы ответим бережно и по существу. Если запрос не требует полноценного проекта, предложим более точный первый шаг.',
+    'Мы ответим в течение 12 часов. Предложим вам либо проект, либо точечный шаг - знакомство.',
   submitLabel: 'Обсудить задачу',
   fields: [
     { name: 'name', label: 'Имя', type: 'text', required: true, placeholder: 'Ваше имя' },
@@ -29,8 +29,8 @@ export const formContent = {
         { value: 'redistributed', label: 'Перераспределённые команды' },
         { value: 'knowledge', label: 'Система знаний' },
         { value: 'multigen', label: 'Мультипоколенческая команда' },
-        { value: 'radar-races', label: 'RADAR Races' },
-        { value: 'resilience', label: 'Leadership resilience' },
+        { value: 'leadership-style', label: 'Личный стиль реагирования топов' },
+        { value: 'resilience', label: 'Стрессоустойчивость руководителей' },
         { value: 'other', label: 'Другое' },
       ],
     },

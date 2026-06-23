@@ -47,6 +47,8 @@ export interface PracticeCard {
   title: string;
   director: string;
   description: string;
+  education?: string;
+  experience?: string[];
 }
 
 export interface FormFieldOption {

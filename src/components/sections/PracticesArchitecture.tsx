@@ -38,6 +38,33 @@ export function PracticesArchitecture() {
                 <p className="mt-2 font-mono text-xs uppercase tracking-[0.1em] text-stone">
                   {practice.director}
                 </p>
+                {practice.education && (
+                  <div className="mt-4">
+                    <p className="font-mono text-xs uppercase tracking-[0.1em] text-champagne/80">
+                      Образование
+                    </p>
+                    <p className="mt-2 font-sans text-sm text-graphite-deep/75 leading-relaxed">
+                      {practice.education}
+                    </p>
+                  </div>
+                )}
+                {practice.experience && practice.experience.length > 0 && (
+                  <div className="mt-4">
+                    <p className="font-mono text-xs uppercase tracking-[0.1em] text-champagne/80">
+                      Опыт работы
+                    </p>
+                    <ul className="mt-2 space-y-2">
+                      {practice.experience.map((item) => (
+                        <li
+                          key={item}
+                          className="font-sans text-sm text-graphite-deep/75 leading-relaxed"
+                        >
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
                 <p className="mt-4 font-sans text-body-mobile text-graphite-deep/80 leading-relaxed">
                   {practice.description}
                 </p>
