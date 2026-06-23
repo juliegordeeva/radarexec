@@ -3,7 +3,7 @@ import { Section } from '@/components/ui/Section';
 import { Heading, BodyText } from '@/components/ui/Typography';
 import { ThinLine } from '@/components/ui/ThinLine';
 import { Button } from '@/components/ui/Button';
-import { RacingTrackGraphic } from '@/components/radar/RacingTrackGraphic';
+import { RadarRacesVisual } from '@/components/radar/RadarRacesVisual';
 import { Reveal } from '@/components/ui/Reveal';
 import { useInView } from '@/hooks/useInView';
 
@@ -27,7 +27,9 @@ export function RadarRaces() {
           </p>
         </Reveal>
 
-        <RacingTrackGraphic className="my-12 w-full max-w-2xl opacity-60" />
+        <Reveal visible={isInView} delay={80}>
+          <RadarRacesVisual className="my-8 md:my-10" />
+        </Reveal>
 
         <div className="max-w-3xl space-y-6">
           {radarRacesContent.body.map((paragraph, i) => (

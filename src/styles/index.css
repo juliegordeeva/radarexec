@@ -30,4 +30,17 @@
     transform-origin: 200px 200px;
     animation: hero-radar-sweep 28s linear infinite;
   }
+
+  @keyframes races-track-dash {
+    from {
+      stroke-dashoffset: 0;
+    }
+    to {
+      stroke-dashoffset: -64;
+    }
+  }
+
+  .races-track-dash {
+    animation: races-track-dash 12s linear infinite;
+  }
 }
