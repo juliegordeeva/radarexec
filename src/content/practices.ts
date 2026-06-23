@@ -43,6 +43,7 @@ export const practicesContent = {
       number: '03',
       title: 'Развитие продуктового подхода, управление продуктом',
       director: 'Директор разработки: Ольга Гордеева',
+      photo: 'images/olga-gordeeva.png',
       education:
         'Магистр (Россия) Управление Проектами. Магистр (SKEMA FRANCE) Business Administration. Магистр (Россия) Организационное Консультирование. Магистр (The University of Manchester UK) Counseling.',
       experience: [
