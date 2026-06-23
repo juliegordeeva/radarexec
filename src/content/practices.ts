@@ -26,7 +26,7 @@ export const practicesContent = {
     {
       id: 'education-systems',
       number: '02',
-      title: 'Управление большими образовательными системами',
+      title: 'Управление образовательными системами',
       director: 'Директор разработки: Олег Емих',
       photo: 'images/oleg-emikh.png',
       education: 'Кандидат технических наук',
@@ -41,7 +41,7 @@ export const practicesContent = {
     {
       id: 'product-management',
       number: '03',
-      title: 'Развитие продуктового подхода, управление продуктом',
+      title: 'Управление продуктом, продуктовый подход',
       director: 'Директор разработки: Ольга Гордеева',
       photo: 'images/olga-gordeeva.png',
       education:
@@ -56,7 +56,7 @@ export const practicesContent = {
     {
       id: 'analytics',
       number: '04',
-      title: 'Управленческая аналитика и оценка эффективности бизнеса',
+      title: 'Оценка эффективности бизнеса',
       director: 'Директор разработки: Валерия Липова',
       education: 'Юрист, Продюсер',
       experience: [
