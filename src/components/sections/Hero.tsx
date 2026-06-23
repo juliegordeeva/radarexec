@@ -2,7 +2,7 @@ import { heroContent } from '@/content/hero';
 import { Container } from '@/components/ui/Container';
 import { Button } from '@/components/ui/Button';
 import { Heading, BodyText } from '@/components/ui/Typography';
-import { RadarHeroGraphic } from '@/components/radar/RadarHeroGraphic';
+import { HeroVisual } from '@/components/radar/HeroVisual';
 import { Reveal } from '@/components/ui/Reveal';
 import { useInView } from '@/hooks/useInView';
 
@@ -46,13 +46,13 @@ export function Hero() {
               ))}
             </Reveal>
           </div>
-          <div className="hidden lg:block">
-            <RadarHeroGraphic className="h-auto w-full max-w-md opacity-80" />
-          </div>
+          <Reveal visible={isInView} delay={180} className="hidden lg:block">
+            <HeroVisual />
+          </Reveal>
         </div>
       </Container>
-      <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-30 lg:hidden">
-        <RadarHeroGraphic className="absolute -right-20 top-1/3 h-64 w-64" />
+      <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-25 lg:hidden">
+        <HeroVisual className="absolute -right-16 top-1/4 w-72" />
       </div>
     </section>
   );
