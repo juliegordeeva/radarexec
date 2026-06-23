@@ -14,6 +14,7 @@ export function RadarRaces() {
     <Section
       id={radarRacesContent.meta.id}
       theme="dark"
+      label={radarRacesContent.meta.label}
       className="bg-gradient-to-b from-graphite-deep to-burgundy/30"
     >
       <div ref={ref}>

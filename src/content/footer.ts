@@ -25,7 +25,7 @@ export const footerContent = {
         { label: 'Аудит систем', href: '#knowledge-management' },
         { label: 'Практические курсы', href: '#redistributed-teams' },
         { label: 'Обучающие проекты', href: '#multigen-teams' },
-        { label: 'Гонки RADAR + стратегическая сессия', href: '#radar-races' },
+        { label: 'ГОНКИ РАДАР + стратегическая сессия', href: '#radar-races' },
       ],
     },
     {
