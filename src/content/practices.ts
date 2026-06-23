@@ -28,6 +28,7 @@ export const practicesContent = {
       number: '02',
       title: 'Управление большими образовательными системами',
       director: 'Директор разработки: Олег Емих',
+      photo: 'images/oleg-emikh.png',
       education: 'Кандидат технических наук',
       experience: [
         '2006 - 2014 Руководитель корпоративной академии',
