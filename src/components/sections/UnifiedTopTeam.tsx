@@ -2,7 +2,7 @@ import { topTeamContent } from '@/content/topTeam';
 import { Section } from '@/components/ui/Section';
 import { Heading, BodyText } from '@/components/ui/Typography';
 import { Button } from '@/components/ui/Button';
-import { UnifiedContourGraphic } from '@/components/radar/UnifiedContourGraphic';
+import { UnifiedTopTeamVisual } from '@/components/radar/UnifiedTopTeamVisual';
 import { Reveal } from '@/components/ui/Reveal';
 import { useInView } from '@/hooks/useInView';
 
@@ -24,7 +24,7 @@ export function UnifiedTopTeam() {
           </div>
         </Reveal>
         <Reveal visible={isInView} delay={150}>
-          <UnifiedContourGraphic className="mx-auto w-full max-w-sm opacity-70" />
+          <UnifiedTopTeamVisual className="mx-auto" />
         </Reveal>
       </div>
     </Section>
