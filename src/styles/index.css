@@ -43,4 +43,19 @@
   .races-track-dash {
     animation: races-track-dash 12s linear infinite;
   }
+
+  @keyframes control-drift-pulse {
+    0%,
+    100% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 0.15;
+    }
+  }
+
+  .control-drift-broken {
+    transform-origin: 210px 200px;
+    animation: control-drift-pulse 6s ease-in-out infinite;
+  }
 }
