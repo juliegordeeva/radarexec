@@ -84,6 +84,7 @@ export const practicesContent = {
       number: '06',
       title: 'Лидерская устойчивость',
       director: 'Директор разработки: Елизавета Сарычева',
+      photo: 'images/elizaveta-sarycheva.jpg',
       education: 'Менеджмент (туризм), Управление организацией (Франция, Магистр), Коучинг (ICF)',
       experience: [
         '2 проекта Олимпийских Игр, 2 проекта FIFA 2014 - 2025, 10 лет в Международном консалтинге ICG Inc для миссии Airbus',
