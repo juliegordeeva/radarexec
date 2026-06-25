@@ -3,7 +3,7 @@ import { CTA_MAILTO } from '@/lib/contact';
 import { Section } from '@/components/ui/Section';
 import { Heading, BodyText } from '@/components/ui/Typography';
 import { Button } from '@/components/ui/Button';
-import { RedistributionGraphic } from '@/components/radar/RedistributionGraphic';
+import { RedistributedTeamsVisual } from '@/components/radar/RedistributedTeamsVisual';
 import { Reveal } from '@/components/ui/Reveal';
 import { useInView } from '@/hooks/useInView';
 
@@ -25,7 +25,7 @@ export function RedistributedTeams() {
           </div>
         </Reveal>
         <Reveal visible={isInView} delay={150}>
-          <RedistributionGraphic className="mx-auto w-full max-w-sm opacity-70" />
+          <RedistributedTeamsVisual className="mx-auto" />
         </Reveal>
       </div>
     </Section>
