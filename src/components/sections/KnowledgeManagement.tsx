@@ -1,4 +1,5 @@
 import { knowledgeManagementContent } from '@/content/knowledgeManagement';
+import { CTA_MAILTO } from '@/lib/contact';
 import { Section } from '@/components/ui/Section';
 import { Heading, BodyText } from '@/components/ui/Typography';
 import { Button } from '@/components/ui/Button';
@@ -29,7 +30,7 @@ export function KnowledgeManagement() {
 
         <Reveal visible={isInView} delay={400} className="mt-10">
           {knowledgeManagementContent.ctas?.map((cta) => (
-            <Button key={cta.label} variant="secondary" theme="light" href="#contact">
+            <Button key={cta.label} variant="secondary" theme="light" href={CTA_MAILTO}>
               {cta.label}
             </Button>
           ))}

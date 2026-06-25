@@ -1,4 +1,5 @@
 import { resultsContent } from '@/content/results';
+import { CTA_MAILTO } from '@/lib/contact';
 import { Section } from '@/components/ui/Section';
 import { Heading, BodyText } from '@/components/ui/Typography';
 import { ThinLine } from '@/components/ui/ThinLine';
@@ -36,7 +37,7 @@ export function Results() {
 
         <Reveal visible={isInView} delay={400} className="mt-6">
           {resultsContent.ctas?.map((cta) => (
-            <Button key={cta.label} variant="secondary" theme="light" href="#contact">
+            <Button key={cta.label} variant="secondary" theme="light" href={CTA_MAILTO}>
               {cta.label}
             </Button>
           ))}

@@ -1,4 +1,5 @@
 import { finalCtaContent } from '@/content/finalCta';
+import { CTA_MAILTO } from '@/lib/contact';
 import { Container } from '@/components/ui/Container';
 import { Heading, BodyText } from '@/components/ui/Typography';
 import { Button } from '@/components/ui/Button';
@@ -29,7 +30,7 @@ export function FinalCta() {
               key={cta.label}
               variant={cta.variant}
               theme="dark"
-              href="#contact"
+              href={CTA_MAILTO}
               fullWidth
               className="sm:w-auto"
             >

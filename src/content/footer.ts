@@ -1,4 +1,5 @@
 import type { FooterColumn } from './types';
+import { CTA_MAILTO, CONTACT_EMAIL } from '@/lib/contact';
 
 // Чтобы добавить/изменить пункт — отредактируйте объект ниже, типы проверят структуру.
 export const footerContent = {
@@ -31,9 +32,9 @@ export const footerContent = {
     {
       title: 'Контакт',
       links: [
-        { label: 'Обсудить задачу', href: '#contact' },
-        { label: 'Получить структуру проекта под ваш запрос', href: '#contact' },
-        { label: 'hello@radarexec.com', href: 'mailto:hello@radarexec.com' },
+        { label: 'Обсудить задачу', href: CTA_MAILTO },
+        { label: 'Получить структуру проекта под ваш запрос', href: CTA_MAILTO },
+        { label: CONTACT_EMAIL, href: CTA_MAILTO },
         { label: '@Prof_jouls', href: 'https://t.me/Prof_jouls' },
       ],
     },

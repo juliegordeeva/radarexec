@@ -1,4 +1,5 @@
 import { radarRacesContent } from '@/content/radarRaces';
+import { CTA_MAILTO } from '@/lib/contact';
 import { Section } from '@/components/ui/Section';
 import { Heading, BodyText } from '@/components/ui/Typography';
 import { ThinLine } from '@/components/ui/ThinLine';
@@ -54,7 +55,7 @@ export function RadarRaces() {
 
         <Reveal visible={isInView} delay={500}>
           {radarRacesContent.ctas?.map((cta) => (
-            <Button key={cta.label} variant="secondary" theme="dark" href="#contact">
+            <Button key={cta.label} variant="secondary" theme="dark" href={CTA_MAILTO}>
               {cta.label}
             </Button>
           ))}

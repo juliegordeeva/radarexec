@@ -1,4 +1,5 @@
 import { howWeWorkContent } from '@/content/howWeWork';
+import { CTA_MAILTO } from '@/lib/contact';
 import { Section } from '@/components/ui/Section';
 import { Heading, BodyText } from '@/components/ui/Typography';
 import { ThinLine } from '@/components/ui/ThinLine';
@@ -36,7 +37,7 @@ export function HowWeWork() {
 
         <Reveal visible={isInView} delay={500} className="mt-10">
           {howWeWorkContent.ctas?.map((cta) => (
-            <Button key={cta.label} variant="secondary" theme="dark" href="#contact">
+            <Button key={cta.label} variant="secondary" theme="dark" href={CTA_MAILTO}>
               {cta.label}
             </Button>
           ))}

@@ -1,4 +1,5 @@
 import { founderContent } from '@/content/founder';
+import { CTA_MAILTO } from '@/lib/contact';
 import { Section } from '@/components/ui/Section';
 import { Heading, BodyText } from '@/components/ui/Typography';
 import { Button } from '@/components/ui/Button';
@@ -43,7 +44,7 @@ export function FounderArchitect() {
               {founderContent.schemeLabel}
             </div>
             {founderContent.ctas?.map((cta) => (
-              <Button key={cta.label} variant="secondary" theme="light" href="#contact">
+              <Button key={cta.label} variant="secondary" theme="light" href={CTA_MAILTO}>
                 {cta.label}
               </Button>
             ))}

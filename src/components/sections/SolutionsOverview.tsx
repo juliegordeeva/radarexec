@@ -1,4 +1,5 @@
 import { solutionsContent } from '@/content/solutions';
+import { CTA_MAILTO } from '@/lib/contact';
 import { Section } from '@/components/ui/Section';
 import { Heading, BodyText } from '@/components/ui/Typography';
 import { ThinLine } from '@/components/ui/ThinLine';
@@ -45,7 +46,7 @@ export function SolutionsOverview() {
                       key={cta.label}
                       variant="secondary"
                       theme="dark"
-                      href="#contact"
+                      href={CTA_MAILTO}
                       className="justify-start transition-transform duration-300 group-hover:translate-x-1"
                     >
                       {cta.label}

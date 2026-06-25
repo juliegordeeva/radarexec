@@ -1,4 +1,5 @@
 import { heroContent } from '@/content/hero';
+import { CTA_MAILTO } from '@/lib/contact';
 import { Container } from '@/components/ui/Container';
 import { Button } from '@/components/ui/Button';
 import { Heading, BodyText } from '@/components/ui/Typography';
@@ -37,7 +38,7 @@ export function Hero() {
                   key={cta.label}
                   variant={cta.variant}
                   theme="dark"
-                  href="#contact"
+                  href={CTA_MAILTO}
                   fullWidth
                   className="sm:w-auto"
                 >

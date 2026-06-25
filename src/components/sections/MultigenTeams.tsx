@@ -1,4 +1,5 @@
 import { multigenTeamsContent } from '@/content/multigenTeams';
+import { CTA_MAILTO } from '@/lib/contact';
 import { Section } from '@/components/ui/Section';
 import { Heading, BodyText } from '@/components/ui/Typography';
 import { Button } from '@/components/ui/Button';
@@ -30,7 +31,7 @@ export function MultigenTeams() {
 
         <Reveal visible={isInView} delay={400} className="mt-10">
           {multigenTeamsContent.ctas?.map((cta) => (
-            <Button key={cta.label} variant="secondary" theme="light" href="#contact">
+            <Button key={cta.label} variant="secondary" theme="light" href={CTA_MAILTO}>
               {cta.label}
             </Button>
           ))}

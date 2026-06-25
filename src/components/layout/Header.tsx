@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { CTA_MAILTO } from '@/lib/contact';
 import { navItems } from '@/content/footer';
 import { Button } from '@/components/ui/Button';
 import { cn, scrollToSection } from '@/lib/utils';
@@ -79,7 +80,7 @@ export function Header() {
         </nav>
 
         <div className="hidden lg:block">
-          <Button variant="secondary" theme={isDark ? 'dark' : 'light'} href="#contact">
+          <Button variant="secondary" theme={isDark ? 'dark' : 'light'} href={CTA_MAILTO}>
             Обсудить задачу
           </Button>
         </div>
@@ -106,7 +107,7 @@ export function Header() {
               {item.label}
             </button>
           ))}
-          <Button variant="secondary" theme="dark" href="#contact" fullWidth>
+          <Button variant="secondary" theme="dark" href={CTA_MAILTO} fullWidth>
             Обсудить задачу
           </Button>
         </div>

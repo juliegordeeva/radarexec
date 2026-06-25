@@ -1,4 +1,4 @@
-import type { ButtonHTMLAttributes } from 'react';
+import type { AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react';
 import { cn, scrollToSection } from '@/lib/utils';
 
 type ButtonVariant = 'primary' | 'secondary';
@@ -38,6 +38,21 @@ export function Button({
   };
 
   const classes = cn(base, variants[variant][theme], fullWidth && 'w-full', className);
+
+  if (href?.startsWith('mailto:') || href?.startsWith('http')) {
+    const anchorProps = props as AnchorHTMLAttributes<HTMLAnchorElement>;
+
+    return (
+      <a
+        href={href}
+        className={classes}
+        onClick={onClick as AnchorHTMLAttributes<HTMLAnchorElement>['onClick']}
+        {...anchorProps}
+      >
+        {children}
+      </a>
+    );
+  }
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (href?.startsWith('#')) {

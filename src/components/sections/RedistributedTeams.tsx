@@ -1,4 +1,5 @@
 import { redistributedTeamsContent } from '@/content/redistributedTeams';
+import { CTA_MAILTO } from '@/lib/contact';
 import { Section } from '@/components/ui/Section';
 import { Heading, BodyText } from '@/components/ui/Typography';
 import { Button } from '@/components/ui/Button';
@@ -17,7 +18,7 @@ export function RedistributedTeams() {
           <BodyText className="mt-6 text-graphite-deep/85">{redistributedTeamsContent.body}</BodyText>
           <div className="mt-8">
             {redistributedTeamsContent.ctas?.map((cta) => (
-              <Button key={cta.label} variant="secondary" theme="light" href="#contact">
+              <Button key={cta.label} variant="secondary" theme="light" href={CTA_MAILTO}>
                 {cta.label}
               </Button>
             ))}

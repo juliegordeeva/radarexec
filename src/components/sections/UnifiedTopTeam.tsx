@@ -1,4 +1,5 @@
 import { topTeamContent } from '@/content/topTeam';
+import { CTA_MAILTO } from '@/lib/contact';
 import { Section } from '@/components/ui/Section';
 import { Heading, BodyText } from '@/components/ui/Typography';
 import { Button } from '@/components/ui/Button';
@@ -17,7 +18,7 @@ export function UnifiedTopTeam() {
           <BodyText className="mt-6 text-graphite-deep/85">{topTeamContent.body}</BodyText>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             {topTeamContent.ctas?.map((cta) => (
-              <Button key={cta.label} variant="secondary" theme="light" href="#contact">
+              <Button key={cta.label} variant="secondary" theme="light" href={CTA_MAILTO}>
                 {cta.label}
               </Button>
             ))}

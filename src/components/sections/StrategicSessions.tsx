@@ -1,4 +1,5 @@
 import { strategicSessionsContent } from '@/content/strategicSessions';
+import { CTA_MAILTO } from '@/lib/contact';
 import { Section } from '@/components/ui/Section';
 import { Heading, BodyText } from '@/components/ui/Typography';
 import { ThinLine } from '@/components/ui/ThinLine';
@@ -35,7 +36,7 @@ export function StrategicSessions() {
 
         <Reveal visible={isInView} delay={400} className="mt-10">
           {strategicSessionsContent.ctas?.map((cta) => (
-            <Button key={cta.label} variant="secondary" theme="dark" href="#contact">
+            <Button key={cta.label} variant="secondary" theme="dark" href={CTA_MAILTO}>
               {cta.label}
             </Button>
           ))}
