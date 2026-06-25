@@ -2,7 +2,7 @@ import { practicesContent } from '@/content/practices';
 import { Section } from '@/components/ui/Section';
 import { Heading, BodyText } from '@/components/ui/Typography';
 import { ThinLine } from '@/components/ui/ThinLine';
-import { PracticesOrbitGraphic } from '@/components/radar/PracticesOrbitGraphic';
+import { PracticesEcosystemVisual } from '@/components/radar/PracticesEcosystemVisual';
 import { Reveal } from '@/components/ui/Reveal';
 import { useInView } from '@/hooks/useInView';
 import { assetUrl } from '@/lib/utils';
@@ -23,10 +23,10 @@ export function PracticesArchitecture() {
           <BodyText className="mt-6 max-w-3xl text-graphite-deep/85">{practicesContent.intro}</BodyText>
         </Reveal>
 
-        <Reveal visible={isInView} delay={150} className="my-12 hidden lg:block">
-          <PracticesOrbitGraphic
+        <Reveal visible={isInView} delay={150} className="my-12">
+          <PracticesEcosystemVisual
             centerLabel={practicesContent.centerLabel}
-            className="mx-auto w-full max-w-lg opacity-60"
+            className="mx-auto"
           />
         </Reveal>
 
