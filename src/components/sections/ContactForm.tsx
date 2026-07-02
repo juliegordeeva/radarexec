@@ -3,6 +3,7 @@ import { formContent } from '@/content/form';
 import { Section } from '@/components/ui/Section';
 import { Heading } from '@/components/ui/Typography';
 import { Button } from '@/components/ui/Button';
+import { CONSENT_PAGE_URL, PRIVACY_PAGE_URL } from '@/lib/contact';
 import { submitInquiry } from '@/lib/submitInquiry';
 import { cn } from '@/lib/utils';
 
@@ -20,6 +21,8 @@ const initialState: FormState = {
 
 export function ContactForm() {
   const [form, setForm] = useState<FormState>(initialState);
+  const [consentPd, setConsentPd] = useState(false);
+  const [consentNews, setConsentNews] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
 
@@ -51,6 +54,9 @@ export function ContactForm() {
         }
       }
     });
+    if (!consentPd) {
+      next.consentPd = formContent.consentPd.error;
+    }
     setErrors(next);
     return Object.keys(next).length === 0;
   };
@@ -68,9 +74,12 @@ export function ContactForm() {
       topics: Array.isArray(form.topics) ? form.topics : [],
       context: String(form.context),
       language: String(form.language),
+      consentNews,
     });
     setStatus('success');
     setForm(initialState);
+    setConsentPd(false);
+    setConsentNews(false);
   };
 
   const fieldClass =
@@ -161,6 +170,59 @@ export function ContactForm() {
           </div>
         ))}
 
+        <div className="space-y-4">
+          <label className="flex cursor-pointer items-start gap-3">
+            <input
+              type="checkbox"
+              checked={consentPd}
+              onChange={(e) => {
+                setConsentPd(e.target.checked);
+                setErrors((prev) => {
+                  const next = { ...prev };
+                  delete next.consentPd;
+                  return next;
+                });
+              }}
+              className="mt-1 size-4 shrink-0 accent-champagne"
+            />
+            <span className="font-sans text-sm leading-relaxed text-graphite-deep/90">
+              {formContent.consentPd.prefix}{' '}
+              <a
+                href={CONSENT_PAGE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline decoration-champagne/50 underline-offset-2 transition-colors hover:text-graphite-deep"
+              >
+                {formContent.consentPd.consentLink}
+              </a>{' '}
+              {formContent.consentPd.and}{' '}
+              <a
+                href={PRIVACY_PAGE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline decoration-champagne/50 underline-offset-2 transition-colors hover:text-graphite-deep"
+              >
+                {formContent.consentPd.privacyLink}
+              </a>
+            </span>
+          </label>
+          {errors.consentPd && (
+            <p className="font-sans text-sm text-burgundy">{errors.consentPd}</p>
+          )}
+
+          <label className="flex cursor-pointer items-start gap-3">
+            <input
+              type="checkbox"
+              checked={consentNews}
+              onChange={(e) => setConsentNews(e.target.checked)}
+              className="mt-1 size-4 shrink-0 accent-champagne"
+            />
+            <span className="font-sans text-sm leading-relaxed text-graphite-deep/90">
+              {formContent.consentNews}
+            </span>
+          </label>
+        </div>
+
         <Button
           type="submit"
           variant="primary"
@@ -173,9 +235,7 @@ export function ContactForm() {
         </Button>
 
         {status === 'success' && (
-          <p className="font-sans text-body-mobile text-graphite-deep/80">
-            Запрос принят. Мы свяжемся с вами в ближайшее время.
-          </p>
+          <p className="font-sans text-body-mobile text-graphite-deep/80">{formContent.mailtoHint}</p>
         )}
 
         <p className="font-sans text-sm text-stone">{formContent.microcopy}</p>

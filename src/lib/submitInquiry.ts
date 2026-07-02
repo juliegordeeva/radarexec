@@ -11,6 +11,7 @@ export interface InquiryData {
   topics: string[];
   context: string;
   language: string;
+  consentNews: boolean;
 }
 
 export async function submitInquiry(data: InquiryData): Promise<void> {
@@ -23,6 +24,8 @@ export async function submitInquiry(data: InquiryData): Promise<void> {
       `Контакт: ${data.contact}`,
       `Темы: ${data.topics.join(', ')}`,
       `Язык: ${data.language}`,
+      `Согласие на рассылку: ${data.consentNews ? 'да' : 'нет'}`,
+      `Дата: ${new Date().toLocaleString('ru-RU')}`,
       '',
       'Контекст:',
       data.context,
