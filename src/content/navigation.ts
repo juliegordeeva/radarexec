@@ -1,8 +1,15 @@
-import type { NavLink } from './types';
+import type { Locale, NavLink } from './types';
 
-// Основная навигация по маршрутам. Чтобы изменить пункт — отредактируйте массив.
-export const primaryNav: NavLink[] = [
-  { label: 'Главная', to: '/' },
-  { label: 'Практики', to: '/practices' },
-  { label: 'Эксперты', to: '/experts' },
-];
+// Основная навигация. `to` — логический путь; языковой префикс добавляется автоматически.
+export const primaryNav: Record<Locale, NavLink[]> = {
+  ru: [
+    { label: 'Главная', to: '/' },
+    { label: 'Практики', to: '/practices' },
+    { label: 'Эксперты', to: '/experts' },
+  ],
+  en: [
+    { label: 'Home', to: '/' },
+    { label: 'Practices', to: '/practices' },
+    { label: 'Experts', to: '/experts' },
+  ],
+};

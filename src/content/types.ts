@@ -1,3 +1,5 @@
+export type Locale = 'ru' | 'en';
+
 export interface CTA {
   label: string;
   href?: string;
@@ -68,7 +70,7 @@ export interface FormField {
 
 export interface FooterColumn {
   title: string;
-  links: { label: string; href: string }[];
+  links: { label: string; href: string; external?: boolean }[];
 }
 
 export interface NavItem {

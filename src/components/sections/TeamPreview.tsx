@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import { expertsContent } from '@/content/experts';
+import { ui } from '@/content/ui';
+import { useLocale, localizedTo } from '@/i18n';
 import { Section } from '@/components/ui/Section';
 import { Heading, BodyText } from '@/components/ui/Typography';
 import { Reveal } from '@/components/ui/Reveal';
@@ -8,21 +10,23 @@ import { assetUrl } from '@/lib/utils';
 
 export function TeamPreview() {
   const { ref, isInView } = useInView<HTMLDivElement>();
+  const locale = useLocale();
+  const c = expertsContent[locale];
 
   return (
-    <Section id="team" theme="light" label={expertsContent.meta.label}>
+    <Section id="team" theme="light" label={c.meta.label}>
       <div ref={ref}>
         <Reveal visible={isInView}>
           <Heading as="h2" className="max-w-2xl">
-            {expertsContent.headline}
+            {c.headline}
           </Heading>
         </Reveal>
         <Reveal visible={isInView} delay={100}>
-          <BodyText className="mt-6 max-w-2xl text-graphite-deep/70">{expertsContent.intro}</BodyText>
+          <BodyText className="mt-6 max-w-2xl text-graphite-deep/70">{c.intro}</BodyText>
         </Reveal>
 
         <ul className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {expertsContent.experts.map((expert, i) => (
+          {c.experts.map((expert, i) => (
             <Reveal key={expert.id} visible={isInView} delay={i * 60}>
               <li className="flex items-center gap-4">
                 {expert.photo && (
@@ -49,10 +53,10 @@ export function TeamPreview() {
 
         <Reveal visible={isInView} delay={200}>
           <Link
-            to="/experts"
+            to={localizedTo('/experts', locale)}
             className="mt-10 inline-flex items-center gap-2 font-mono text-cta uppercase tracking-[0.08em] text-champagne transition-colors hover:text-champagne-deep"
           >
-            Все эксперты →
+            {ui[locale].viewAllExperts}
           </Link>
         </Reveal>
       </div>

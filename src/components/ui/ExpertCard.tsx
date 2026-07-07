@@ -1,11 +1,19 @@
 import type { Expert } from '@/content/types';
+import { useLocale } from '@/i18n';
 import { assetUrl } from '@/lib/utils';
 
 interface ExpertCardProps {
   expert: Expert;
 }
 
+const labels = {
+  ru: { education: 'Образование', experience: 'Опыт' },
+  en: { education: 'Education', experience: 'Experience' },
+} as const;
+
 export function ExpertCard({ expert }: ExpertCardProps) {
+  const t = labels[useLocale()];
+
   return (
     <article className="flex h-full flex-col border border-champagne/20 bg-ivory-soft">
       {expert.photo && (
@@ -34,7 +42,7 @@ export function ExpertCard({ expert }: ExpertCardProps) {
         {expert.education && (
           <div className="mt-5">
             <p className="font-mono text-label uppercase tracking-[0.12em] text-stone">
-              Образование
+              {t.education}
             </p>
             <p className="mt-1 font-sans text-sm text-graphite-deep/75">{expert.education}</p>
           </div>
@@ -42,7 +50,9 @@ export function ExpertCard({ expert }: ExpertCardProps) {
 
         {expert.experience && expert.experience.length > 0 && (
           <div className="mt-5">
-            <p className="font-mono text-label uppercase tracking-[0.12em] text-stone">Опыт</p>
+            <p className="font-mono text-label uppercase tracking-[0.12em] text-stone">
+              {t.experience}
+            </p>
             <ul className="mt-1 space-y-1.5">
               {expert.experience.map((item, i) => (
                 <li key={i} className="font-sans text-sm text-graphite-deep/75">

@@ -2,14 +2,49 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { CTA_MAILTO } from '@/lib/contact';
 import { primaryNav } from '@/content/navigation';
+import { ui } from '@/content/ui';
+import { LOCALES, localizedTo, stripLocale, useLocale, type Locale } from '@/i18n';
 import { Button } from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
+
+function LanguageSwitcher({ className }: { className?: string }) {
+  const locale = useLocale();
+  const { pathname } = useLocation();
+  const basePath = stripLocale(pathname);
+
+  return (
+    <div
+      className={cn('flex items-center gap-2 font-mono text-xs uppercase tracking-[0.14em]', className)}
+      role="group"
+      aria-label={ui[locale].languageSwitchAria}
+    >
+      {LOCALES.map((code: Locale, i) => (
+        <span key={code} className="flex items-center gap-2">
+          {i > 0 && <span className="text-ivory/25">/</span>}
+          <Link
+            to={localizedTo(basePath, code)}
+            aria-current={code === locale ? 'true' : undefined}
+            className={cn(
+              'transition-colors hover:text-champagne',
+              code === locale ? 'text-champagne' : 'text-stone-light',
+            )}
+          >
+            {code}
+          </Link>
+        </span>
+      ))}
+    </div>
+  );
+}
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
   const location = useLocation();
+  const locale = useLocale();
+  const t = ui[locale];
+  const nav = primaryNav[locale];
 
   useEffect(() => {
     setMenuOpen(false);
@@ -41,24 +76,35 @@ export function Header() {
       isActive ? 'text-champagne' : 'text-stone-light',
     );
 
+  const navAriaLabel = locale === 'ru' ? 'Основная навигация' : 'Main navigation';
+
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-ivory/10 bg-graphite-deep/95 text-ivory backdrop-blur-sm">
       <div className="mx-auto flex max-w-content items-center justify-between px-5 py-5 md:px-10 xl:px-20">
-        <Link to="/" className="font-mono text-sm uppercase tracking-[0.2em] text-ivory">
+        <Link
+          to={localizedTo('/', locale)}
+          className="font-mono text-sm uppercase tracking-[0.2em] text-ivory"
+        >
           RADAR EXECUTIVE
         </Link>
 
-        <nav aria-label="Основная навигация" className="hidden items-center gap-8 lg:flex">
-          {primaryNav.map((item) => (
-            <NavLink key={item.to} to={item.to} end={item.to === '/'} className={navLinkClass}>
+        <nav aria-label={navAriaLabel} className="hidden items-center gap-8 lg:flex">
+          {nav.map((item) => (
+            <NavLink
+              key={item.to}
+              to={localizedTo(item.to, locale)}
+              end={item.to === '/'}
+              className={navLinkClass}
+            >
               {item.label}
             </NavLink>
           ))}
         </nav>
 
-        <div className="hidden lg:block">
+        <div className="hidden items-center gap-6 lg:flex">
+          <LanguageSwitcher />
           <Button variant="secondary" theme="dark" href={CTA_MAILTO}>
-            Обсудить задачу
+            {t.headerCta}
           </Button>
         </div>
 
@@ -70,7 +116,7 @@ export function Header() {
           aria-expanded={menuOpen}
           aria-controls="mobile-menu"
         >
-          {menuOpen ? 'Закрыть' : 'Меню'}
+          {menuOpen ? (locale === 'ru' ? 'Закрыть' : 'Close') : locale === 'ru' ? 'Меню' : 'Menu'}
         </button>
       </div>
 
@@ -79,10 +125,10 @@ export function Header() {
           id="mobile-menu"
           className="fixed inset-0 top-[73px] z-40 flex flex-col gap-2 bg-graphite-deep px-8 py-10 text-ivory lg:hidden"
         >
-          {primaryNav.map((item, i) => (
+          {nav.map((item, i) => (
             <NavLink
               key={item.to}
-              to={item.to}
+              to={localizedTo(item.to, locale)}
               end={item.to === '/'}
               ref={i === 0 ? firstLinkRef : undefined}
               className={({ isActive }) =>
@@ -95,8 +141,9 @@ export function Header() {
               {item.label}
             </NavLink>
           ))}
-          <Button variant="secondary" theme="dark" href={CTA_MAILTO} fullWidth className="mt-4">
-            Обсудить задачу
+          <LanguageSwitcher className="mt-4 py-2" />
+          <Button variant="secondary" theme="dark" href={CTA_MAILTO} fullWidth className="mt-2">
+            {t.headerCta}
           </Button>
         </div>
       )}

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { localizedTo, useLocale } from '@/i18n';
 
 interface Crumb {
   label: string;
@@ -10,13 +11,16 @@ interface BreadcrumbsProps {
 }
 
 export function Breadcrumbs({ items }: BreadcrumbsProps) {
+  const locale = useLocale();
+  const ariaLabel = locale === 'ru' ? 'Хлебные крошки' : 'Breadcrumbs';
+
   return (
-    <nav aria-label="Хлебные крошки" className="mb-6">
+    <nav aria-label={ariaLabel} className="mb-6">
       <ol className="flex flex-wrap items-center gap-2 font-mono text-label uppercase tracking-[0.12em] text-stone-light">
         {items.map((item, i) => (
           <li key={item.label} className="flex items-center gap-2">
             {item.to ? (
-              <Link to={item.to} className="transition-colors hover:text-champagne">
+              <Link to={localizedTo(item.to, locale)} className="transition-colors hover:text-champagne">
                 {item.label}
               </Link>
             ) : (

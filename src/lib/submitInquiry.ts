@@ -1,4 +1,5 @@
 import { CONTACT_EMAIL } from '@/lib/contact';
+import type { Locale } from '@/content/types';
 
 /**
  * Открывает почтовый клиент с данными заявки.
@@ -12,22 +13,57 @@ export interface InquiryData {
   context: string;
   language: string;
   consentNews: boolean;
+  locale?: Locale;
 }
 
+const mailLabels = {
+  ru: {
+    subject: 'Запрос с сайта РАДАР EXECUTIVE',
+    name: 'Имя',
+    company: 'Компания',
+    role: 'Роль',
+    contact: 'Контакт',
+    topics: 'Темы',
+    language: 'Язык',
+    consentNews: 'Согласие на рассылку',
+    yes: 'да',
+    no: 'нет',
+    date: 'Дата',
+    context: 'Контекст:',
+    locale: 'ru-RU',
+  },
+  en: {
+    subject: 'Inquiry from the RADAR EXECUTIVE website',
+    name: 'Name',
+    company: 'Company',
+    role: 'Role',
+    contact: 'Contact',
+    topics: 'Topics',
+    language: 'Preferred language',
+    consentNews: 'Newsletter consent',
+    yes: 'yes',
+    no: 'no',
+    date: 'Date',
+    context: 'Context:',
+    locale: 'en-US',
+  },
+} as const;
+
 export async function submitInquiry(data: InquiryData): Promise<void> {
-  const subject = encodeURIComponent(`Запрос с сайта РАДАР EXECUTIVE — ${data.name}`);
+  const t = mailLabels[data.locale ?? 'ru'];
+  const subject = encodeURIComponent(`${t.subject} — ${data.name}`);
   const body = encodeURIComponent(
     [
-      `Имя: ${data.name}`,
-      `Компания: ${data.company}`,
-      `Роль: ${data.role}`,
-      `Контакт: ${data.contact}`,
-      `Темы: ${data.topics.join(', ')}`,
-      `Язык: ${data.language}`,
-      `Согласие на рассылку: ${data.consentNews ? 'да' : 'нет'}`,
-      `Дата: ${new Date().toLocaleString('ru-RU')}`,
+      `${t.name}: ${data.name}`,
+      `${t.company}: ${data.company}`,
+      `${t.role}: ${data.role}`,
+      `${t.contact}: ${data.contact}`,
+      `${t.topics}: ${data.topics.join(', ')}`,
+      `${t.language}: ${data.language}`,
+      `${t.consentNews}: ${data.consentNews ? t.yes : t.no}`,
+      `${t.date}: ${new Date().toLocaleString(t.locale)}`,
       '',
-      'Контекст:',
+      t.context,
       data.context,
     ].join('\n'),
   );

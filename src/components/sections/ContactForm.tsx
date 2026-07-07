@@ -1,5 +1,6 @@
-import { useState, type FormEvent } from 'react';
+import { useMemo, useState, type FormEvent } from 'react';
 import { formContent } from '@/content/form';
+import { useLocale } from '@/i18n';
 import { Section } from '@/components/ui/Section';
 import { Heading } from '@/components/ui/Typography';
 import { Button } from '@/components/ui/Button';
@@ -9,17 +10,21 @@ import { cn } from '@/lib/utils';
 
 type FormState = Record<string, string | string[]>;
 
-const initialState: FormState = {
-  name: '',
-  company: '',
-  role: '',
-  contact: '',
-  topics: [],
-  context: '',
-  language: 'ru',
-};
-
 export function ContactForm() {
+  const locale = useLocale();
+  const content = formContent[locale];
+  const initialState = useMemo<FormState>(
+    () => ({
+      name: '',
+      company: '',
+      role: '',
+      contact: '',
+      topics: [],
+      context: '',
+      language: locale,
+    }),
+    [locale],
+  );
   const [form, setForm] = useState<FormState>(initialState);
   const [consentPd, setConsentPd] = useState(false);
   const [consentNews, setConsentNews] = useState(false);
@@ -37,25 +42,25 @@ export function ContactForm() {
 
   const validate = () => {
     const next: Record<string, string> = {};
-    formContent.fields.forEach((field) => {
+    content.fields.forEach((field) => {
       const value = form[field.name];
       if (field.required) {
         if (field.type === 'multiselect' && (!Array.isArray(value) || value.length === 0)) {
-          next[field.name] = 'Выберите хотя бы один вариант';
+          next[field.name] = content.errors.requiredMulti;
         } else if (!value || (typeof value === 'string' && !value.trim())) {
-          next[field.name] = 'Обязательное поле';
+          next[field.name] = content.errors.required;
         }
       }
       if (field.name === 'contact' && typeof value === 'string' && value.trim()) {
         const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
         const isTelegram = value.startsWith('@') || value.includes('t.me');
         if (!isEmail && !isTelegram) {
-          next[field.name] = 'Укажите email или Telegram';
+          next[field.name] = content.errors.contact;
         }
       }
     });
     if (!consentPd) {
-      next.consentPd = formContent.consentPd.error;
+      next.consentPd = content.consentPd.error;
     }
     setErrors(next);
     return Object.keys(next).length === 0;
@@ -75,6 +80,7 @@ export function ContactForm() {
       context: String(form.context),
       language: String(form.language),
       consentNews,
+      locale,
     });
     setStatus('success');
     setForm(initialState);
@@ -86,13 +92,13 @@ export function ContactForm() {
     'w-full border-0 border-b border-champagne/30 bg-transparent py-3 font-sans text-body-mobile text-graphite-deep outline-none transition-colors placeholder:text-stone/60 focus:border-champagne';
 
   return (
-    <Section id={formContent.meta.id} theme="light">
+    <Section id={content.meta.id} theme="light">
       <Heading as="h2" className="max-w-xl">
-        {formContent.headline}
+        {content.headline}
       </Heading>
 
       <form onSubmit={handleSubmit} className="mt-12 max-w-2xl space-y-8">
-        {formContent.fields.map((field) => (
+        {content.fields.map((field) => (
           <div key={field.name}>
             <label htmlFor={field.name} className="mb-2 block font-mono text-label uppercase tracking-[0.12em] text-stone">
               {field.label}
@@ -186,23 +192,23 @@ export function ContactForm() {
               className="mt-1 size-4 shrink-0 accent-champagne"
             />
             <span className="font-sans text-sm leading-relaxed text-graphite-deep/90">
-              {formContent.consentPd.prefix}{' '}
+              {content.consentPd.prefix}{' '}
               <a
                 href={CONSENT_PAGE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline decoration-champagne/50 underline-offset-2 transition-colors hover:text-graphite-deep"
               >
-                {formContent.consentPd.consentLink}
+                {content.consentPd.consentLink}
               </a>{' '}
-              {formContent.consentPd.and}{' '}
+              {content.consentPd.and}{' '}
               <a
                 href={PRIVACY_PAGE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline decoration-champagne/50 underline-offset-2 transition-colors hover:text-graphite-deep"
               >
-                {formContent.consentPd.privacyLink}
+                {content.consentPd.privacyLink}
               </a>
             </span>
           </label>
@@ -218,7 +224,7 @@ export function ContactForm() {
               className="mt-1 size-4 shrink-0 accent-champagne"
             />
             <span className="font-sans text-sm leading-relaxed text-graphite-deep/90">
-              {formContent.consentNews}
+              {content.consentNews}
             </span>
           </label>
         </div>
@@ -231,14 +237,14 @@ export function ContactForm() {
           className="sm:w-auto"
           disabled={status === 'submitting'}
         >
-          {status === 'submitting' ? 'Отправка…' : formContent.submitLabel}
+          {status === 'submitting' ? content.submittingLabel : content.submitLabel}
         </Button>
 
         {status === 'success' && (
-          <p className="font-sans text-body-mobile text-graphite-deep/80">{formContent.mailtoHint}</p>
+          <p className="font-sans text-body-mobile text-graphite-deep/80">{content.mailtoHint}</p>
         )}
 
-        <p className="font-sans text-sm text-stone">{formContent.microcopy}</p>
+        <p className="font-sans text-sm text-stone">{content.microcopy}</p>
       </form>
     </Section>
   );

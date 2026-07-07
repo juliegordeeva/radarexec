@@ -1,4 +1,5 @@
 import { resultsContent } from '@/content/results';
+import { useLocale } from '@/i18n';
 import { CTA_MAILTO } from '@/lib/contact';
 import { Section } from '@/components/ui/Section';
 import { Heading, BodyText } from '@/components/ui/Typography';
@@ -9,21 +10,22 @@ import { useInView } from '@/hooks/useInView';
 
 export function Changes() {
   const { ref, isInView } = useInView<HTMLDivElement>();
+  const c = resultsContent[useLocale()];
 
   return (
-    <Section id={resultsContent.meta.id} theme="taupe" label={resultsContent.meta.label}>
+    <Section id={c.meta.id} theme="taupe" label={c.meta.label}>
       <div ref={ref}>
         <Reveal visible={isInView}>
           <Heading as="h2" className="max-w-2xl text-ivory">
-            {resultsContent.headline}
+            {c.headline}
           </Heading>
         </Reveal>
         <Reveal visible={isInView} delay={100}>
-          <BodyText className="mt-6 max-w-2xl text-stone-light">{resultsContent.intro}</BodyText>
+          <BodyText className="mt-6 max-w-2xl text-stone-light">{c.intro}</BodyText>
         </Reveal>
 
         <ul className="mt-12 space-y-6">
-          {resultsContent.items.map((item, i) => (
+          {c.items.map((item, i) => (
             <Reveal key={item.number} visible={isInView} delay={i * 60}>
               <li>
                 <div className="flex flex-col gap-2 md:flex-row md:gap-8">
@@ -44,7 +46,7 @@ export function Changes() {
         </ul>
 
         <Reveal visible={isInView} delay={200} className="mt-12">
-          {resultsContent.ctas?.map((cta) => (
+          {c.ctas?.map((cta) => (
             <Button key={cta.label} variant="secondary" theme="dark" href={CTA_MAILTO}>
               {cta.label}
             </Button>

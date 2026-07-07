@@ -1,4 +1,5 @@
 import { heroContent } from '@/content/hero';
+import { useLocale } from '@/i18n';
 import { CTA_MAILTO } from '@/lib/contact';
 import { Container } from '@/components/ui/Container';
 import { Button } from '@/components/ui/Button';
@@ -9,6 +10,7 @@ import { useInView } from '@/hooks/useInView';
 
 export function Hero() {
   const { ref, isInView } = useInView<HTMLElement>();
+  const heroContentLocalized = heroContent[useLocale()];
 
   return (
     <section
@@ -21,19 +23,19 @@ export function Hero() {
           <div>
             <Reveal visible={isInView}>
               <Heading as="h1" className="max-w-3xl text-ivory">
-                {heroContent.headline}
+                {heroContentLocalized.headline}
               </Heading>
             </Reveal>
             <Reveal visible={isInView} delay={120} className="mt-8">
               <p className="max-w-xl font-sans text-subheadline-mobile md:text-subheadline text-stone-light leading-relaxed">
-                {heroContent.subheadline}
+                {heroContentLocalized.subheadline}
               </p>
             </Reveal>
             <Reveal visible={isInView} delay={220} className="mt-6">
-              <BodyText className="max-w-lg text-stone">{heroContent.body}</BodyText>
+              <BodyText className="max-w-lg text-stone">{heroContentLocalized.body}</BodyText>
             </Reveal>
             <Reveal visible={isInView} delay={320} className="mt-10 flex flex-col gap-4 sm:flex-row">
-              {heroContent.ctas?.map((cta) => (
+              {heroContentLocalized.ctas?.map((cta) => (
                 <Button
                   key={cta.label}
                   variant={cta.variant}

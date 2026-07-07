@@ -1,4 +1,6 @@
 import { Seo } from '@/app/Seo';
+import { seoContent } from '@/content/seo';
+import { useLocale } from '@/i18n';
 import { Hero } from '@/components/sections/Hero';
 import { Situations } from '@/components/sections/Situations';
 import { FeaturedFormats } from '@/components/sections/FeaturedFormats';
@@ -10,13 +12,10 @@ import { FinalCta } from '@/components/sections/FinalCta';
 import { ContactForm } from '@/components/sections/ContactForm';
 
 export function HomePage() {
+  const seo = seoContent[useLocale()].home;
   return (
     <>
-      <Seo
-        title="РАДАР EXECUTIVE — решения для сложных управленческих ситуаций"
-        description="Экспертное партнёрское бюро для собственников и топ-команд: стратегические сессии, диагностика систем управления и знаний, восстановление координации после реструктуризации."
-        path="/"
-      />
+      <Seo title={seo.title} description={seo.description} path="/" />
       <Hero />
       <Situations />
       <FeaturedFormats />

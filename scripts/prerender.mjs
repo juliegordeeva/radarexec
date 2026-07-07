@@ -10,8 +10,8 @@ const distDir = path.join(rootDir, 'dist');
 const PORT = 4173;
 const BASE = `http://127.0.0.1:${PORT}`;
 
-// Все публичные маршруты, которые нужно превратить в статический HTML.
-const ROUTES = ['/', '/practices', '/experts'];
+// Все публичные маршруты, которые нужно превратить в статический HTML (RU + EN).
+const ROUTES = ['/', '/practices', '/experts', '/en', '/en/practices', '/en/experts'];
 
 async function startPreview() {
   const server = await preview({
