@@ -105,6 +105,8 @@ export interface Expert {
   education?: string;
   experience?: string[];
   photo?: string;
+  /** CSS object-position для кадрирования фото. По умолчанию 'top'. */
+  photoPosition?: string;
   isFounder?: boolean;
 }
 

@@ -44,6 +44,7 @@ export const expertsContent = {
       role: 'Директор разработки',
       specialization: 'Управление продуктом, продуктовый подход',
       photo: 'images/olga-gordeeva.png',
+      photoPosition: 'center',
       education:
         'Магистр управления проектами (Россия). Магистр Business Administration (SKEMA, Франция). Магистр организационного консультирования (Россия). Магистр Counseling (The University of Manchester, Великобритания).',
       experience: [

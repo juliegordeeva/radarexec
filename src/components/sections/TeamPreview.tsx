@@ -29,7 +29,8 @@ export function TeamPreview() {
                   <img
                     src={assetUrl(expert.photo)}
                     alt={`${expert.name} — ${expert.specialization}`}
-                    className="size-16 shrink-0 rounded-sm border border-champagne/20 object-cover object-top"
+                    className="size-16 shrink-0 rounded-sm border border-champagne/20 object-cover"
+                    style={{ objectPosition: expert.photoPosition ?? 'top' }}
                     loading="lazy"
                   />
                 )}

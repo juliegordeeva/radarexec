@@ -13,7 +13,8 @@ export function ExpertCard({ expert }: ExpertCardProps) {
           <img
             src={assetUrl(expert.photo)}
             alt={`${expert.name} — ${expert.specialization}`}
-            className="h-full w-full object-cover object-top"
+            className="h-full w-full object-cover"
+            style={{ objectPosition: expert.photoPosition ?? 'top' }}
             loading="lazy"
           />
         </div>
