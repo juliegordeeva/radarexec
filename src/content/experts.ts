@@ -102,12 +102,12 @@ export const expertsContent: Record<Locale, ExpertsContent> = {
     intro:
       'RADAR EXECUTIVE is not a roster of consultants for hire or a one-person brand. It’s an ecosystem of practices we have built carefully since 2006. For every task we assemble a team of experts with the right specialization.',
     founderNote:
-      'Yulia Gordeeva is the founder of RADAR EXECUTIVE, development director of the business modeling practice, and the architect of its cross-cultural and cross-functional approach. Her role is to see the business situation as a whole: the model, the leadership team, the economics of decisions, and the human complexity of change. RADAR EXECUTIVE remains a team brand.',
+      'Yulia Gordeeva is the founder of RADAR EXECUTIVE, strategic development director of the business modeling practice, and the architect of its cross-cultural and cross-functional approach. Her role is to see the business situation as a whole: the model, the leadership team, the economics of decisions, and the human complexity of change. RADAR EXECUTIVE remains a team brand.',
     experts: [
       {
         id: 'yulia-gordeeva',
         name: 'Yulia Gordeeva',
-        role: 'Founder, Development Director',
+        role: 'Founder, Strategic Development Director',
         specialization: 'Business modeling of management processes',
         isFounder: true,
         photo: 'images/yulia-gordeeva.png',
@@ -121,20 +121,20 @@ export const expertsContent: Record<Locale, ExpertsContent> = {
       {
         id: 'oleg-emikh',
         name: 'Oleg Emikh',
-        role: 'Development Director',
+        role: 'Strategic Development Director',
         specialization: 'Management of educational systems',
         photo: 'images/oleg-emikh.png',
-        education: 'Candidate of Technical Sciences (PhD).',
+        education: 'PhD.',
         experience: [
           '2006–2014 — Head of a corporate academy.',
-          '2006–2024 — Director of the “Business Consulting” alliance.',
+          '2006–2024 — Director of the Alliance of Business Consulting.',
           '2022 – present — Deputy Director, School of Management, Financial University under the Government of the Russian Federation.',
         ],
       },
       {
         id: 'olga-gordeeva',
         name: 'Olga Gordeeva',
-        role: 'Development Director',
+        role: 'Strategic Development Director',
         specialization: 'Product management and product approach',
         photo: 'images/olga-gordeeva.png',
         photoPosition: 'center',
@@ -148,7 +148,7 @@ export const expertsContent: Record<Locale, ExpertsContent> = {
       {
         id: 'valeria-lipova',
         name: 'Valeria Lipova',
-        role: 'Development Director',
+        role: 'Strategic Development Director',
         specialization: 'Business performance assessment',
         photo: 'images/valeria-lipova.jpg',
         education: 'Lawyer, producer.',
@@ -159,7 +159,7 @@ export const expertsContent: Record<Locale, ExpertsContent> = {
       {
         id: 'lada-kuzminskaya',
         name: 'Lada Kuzminskaya',
-        role: 'Development Director',
+        role: 'Strategic Development Director',
         specialization: 'Marketing, PR, GR',
         photo: 'images/lada-kuzminskaya.png',
         education: 'Metrology, economics and management, international management, MBA.',
@@ -170,7 +170,7 @@ export const expertsContent: Record<Locale, ExpertsContent> = {
       {
         id: 'elizaveta-sarycheva',
         name: 'Elizaveta Sarycheva',
-        role: 'Development Director',
+        role: 'Strategic Development Director',
         specialization: 'Leadership resilience',
         photo: 'images/elizaveta-sarycheva.jpg',
         education:

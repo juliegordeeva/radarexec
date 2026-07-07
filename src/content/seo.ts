@@ -45,7 +45,7 @@ export const seoContent: Record<Locale, SeoContent> = {
     experts: {
       title: 'Experts — the RADAR EXECUTIVE team',
       description:
-        'The RADAR EXECUTIVE practice team: development directors for business modeling, educational systems, product, performance, marketing, and leadership resilience.',
+        'The RADAR EXECUTIVE practice team: strategic development directors for business modeling, educational systems, product, performance, marketing, and leadership resilience.',
     },
     notFound: {
       title: 'Page not found — RADAR EXECUTIVE',
