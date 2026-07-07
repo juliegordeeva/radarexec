@@ -6,6 +6,7 @@ type InternationalContent = {
   body: string[];
   tags: string[];
   languages: string[];
+  imageAlt: string;
 };
 
 export const internationalContent: Record<Locale, InternationalContent> = {
@@ -24,6 +25,8 @@ export const internationalContent: Record<Locale, InternationalContent> = {
       'Международные управленческие команды',
     ],
     languages: ['RU', 'EN', 'FR'],
+    imageAlt:
+      'Международная управленческая команда — профессионалы разных культурных контекстов',
   },
   en: {
     meta: { id: 'international' },
@@ -36,5 +39,6 @@ export const internationalContent: Record<Locale, InternationalContent> = {
     ],
     tags: ['Work in three languages', 'Cross-cultural work', 'International management teams'],
     languages: ['RU', 'EN', 'FR'],
+    imageAlt: 'International management team — professionals from different cultural contexts',
   },
 };
