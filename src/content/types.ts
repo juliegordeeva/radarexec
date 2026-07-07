@@ -76,6 +76,38 @@ export interface NavItem {
   href: string;
 }
 
+export interface NavLink {
+  label: string;
+  to: string;
+}
+
+export interface SituationItem {
+  number: string;
+  text: string;
+}
+
+export interface FormatItem {
+  id: string;
+  number: string;
+  title: string;
+  situation: string;
+  whatWeDo: string;
+  format: string;
+  forWhom: string;
+  cta: CTA;
+}
+
+export interface Expert {
+  id: string;
+  name: string;
+  role: string;
+  specialization: string;
+  education?: string;
+  experience?: string[];
+  photo?: string;
+  isFounder?: boolean;
+}
+
 export interface SectionContent {
   meta: SectionMeta;
   headline: string;

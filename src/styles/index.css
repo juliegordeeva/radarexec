@@ -14,6 +14,25 @@
   ::selection {
     @apply bg-champagne/30 text-graphite-deep;
   }
+
+  :focus-visible {
+    outline: 2px solid theme('colors.champagne.DEFAULT');
+    outline-offset: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }
 
 @layer utilities {
@@ -29,33 +48,5 @@
   .hero-radar-sweep {
     transform-origin: 200px 200px;
     animation: hero-radar-sweep 28s linear infinite;
-  }
-
-  @keyframes races-track-dash {
-    from {
-      stroke-dashoffset: 0;
-    }
-    to {
-      stroke-dashoffset: -64;
-    }
-  }
-
-  .races-track-dash {
-    animation: races-track-dash 12s linear infinite;
-  }
-
-  @keyframes control-drift-pulse {
-    0%,
-    100% {
-      opacity: 0.5;
-    }
-    50% {
-      opacity: 0.15;
-    }
-  }
-
-  .control-drift-broken {
-    transform-origin: 210px 200px;
-    animation: control-drift-pulse 6s ease-in-out infinite;
   }
 }

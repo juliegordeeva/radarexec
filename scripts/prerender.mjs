@@ -1,4 +1,4 @@
-import { writeFile } from 'node:fs/promises';
+import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import puppeteer from 'puppeteer';
@@ -8,41 +8,68 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '..');
 const distDir = path.join(rootDir, 'dist');
 const PORT = 4173;
-const PREVIEW_URL = `http://127.0.0.1:${PORT}/`;
-const CONTENT_MARKER = 'Экспертное партнёрское бюро';
+const BASE = `http://127.0.0.1:${PORT}`;
+
+// Все публичные маршруты, которые нужно превратить в статический HTML.
+const ROUTES = ['/', '/practices', '/experts'];
 
 async function startPreview() {
-  const previewServer = await preview({
+  const server = await preview({
     root: rootDir,
-    preview: {
-      port: PORT,
-      strictPort: true,
-      host: '127.0.0.1',
-    },
+    preview: { port: PORT, strictPort: true, host: '127.0.0.1' },
   });
 
   await new Promise((resolve, reject) => {
-    const httpServer = previewServer.httpServer;
-    if (!httpServer) {
-      reject(new Error('Preview server did not expose httpServer'));
-      return;
-    }
-
-    if (httpServer.listening) {
-      resolve(undefined);
-      return;
-    }
-
+    const httpServer = server.httpServer;
+    if (!httpServer) return reject(new Error('Preview server did not expose httpServer'));
+    if (httpServer.listening) return resolve(undefined);
     httpServer.once('listening', resolve);
     httpServer.once('error', reject);
   });
 
-  return previewServer;
+  return server;
+}
+
+function outputFileForRoute(route) {
+  if (route === '/') return path.join(distDir, 'index.html');
+  return path.join(distDir, route.replace(/^\//, ''), 'index.html');
+}
+
+async function prerenderRoute(browser, route) {
+  const page = await browser.newPage();
+  await page.setViewport({ width: 1280, height: 900 });
+
+  await page.goto(`${BASE}${route}`, { waitUntil: 'networkidle0', timeout: 60000 });
+
+  // Устойчивый маркер: заголовок h1 отрисован и в body есть содержательный текст.
+  await page.waitForSelector('h1', { timeout: 30000 });
+  await page.waitForFunction(() => document.body.innerText.trim().length > 500, {
+    timeout: 30000,
+  });
+
+  // Дать react-helmet-async обновить <head>.
+  await new Promise((resolve) => setTimeout(resolve, 400));
+
+  const html = await page.content();
+  const textLength = await page.evaluate(() => document.body.innerText.trim().length);
+
+  const outFile = outputFileForRoute(route);
+  await mkdir(path.dirname(outFile), { recursive: true });
+  await writeFile(outFile, html, 'utf8');
+  console.log(
+    `Prerender: ${route} → ${path.relative(rootDir, outFile)} (${html.length} bytes, ${textLength} chars text)`,
+  );
+
+  await page.close();
 }
 
 async function prerender() {
+  // Сохраняем исходную пустую оболочку как SPA-fallback для неизвестных маршрутов.
+  const shell = await readFile(path.join(distDir, 'index.html'), 'utf8');
+  await writeFile(path.join(distDir, '404.html'), shell, 'utf8');
+
   console.log('Prerender: starting preview server…');
-  const previewServer = await startPreview();
+  const server = await startPreview();
 
   try {
     console.log('Prerender: launching headless browser…');
@@ -51,29 +78,15 @@ async function prerender() {
       args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
     });
 
-    const page = await browser.newPage();
-    await page.setViewport({ width: 1280, height: 800 });
-
-    await page.goto(PREVIEW_URL, { waitUntil: 'networkidle0', timeout: 60000 });
-
-    await page.waitForFunction(
-      (marker) => document.body.innerText.includes(marker),
-      { timeout: 30000 },
-      CONTENT_MARKER,
-    );
-
-    // Let react-helmet-async finish updating <head>.
-    await new Promise((resolve) => setTimeout(resolve, 500));
-
-    const html = await page.content();
-    const textLength = await page.evaluate(() => document.body.innerText.trim().length);
-
-    await writeFile(path.join(distDir, 'index.html'), html, 'utf8');
-    console.log(`Prerender: wrote dist/index.html (${html.length} bytes, ${textLength} chars text)`);
-
-    await browser.close();
+    try {
+      for (const route of ROUTES) {
+        await prerenderRoute(browser, route);
+      }
+    } finally {
+      await browser.close();
+    }
   } finally {
-    await previewServer.close();
+    await server.close();
   }
 }
 

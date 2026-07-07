@@ -66,12 +66,12 @@ export function HeroVisual({ className }: HeroVisualProps) {
 
         <div className="pointer-events-none absolute inset-x-0 top-10 flex justify-between px-10 font-mono text-[10px] uppercase tracking-[0.2em] text-champagne/60">
           <span>RADAR EXECUTIVE</span>
-          <span>01 / SIGNAL</span>
+          <span>01 / СИГНАЛ</span>
         </div>
 
         <div className="pointer-events-none absolute inset-x-0 bottom-10 px-10 font-mono text-[10px] uppercase tracking-[0.16em] text-stone/80">
-          <p>Advisory contour map</p>
-          <p className="mt-1 text-champagne/50">Context → decision → execution</p>
+          <p>Карта управленческой ситуации</p>
+          <p className="mt-1 text-champagne/50">Контекст → решение → действие</p>
         </div>
 
         <div className="pointer-events-none absolute right-10 top-1/2 -translate-y-1/2 text-right font-mono text-[9px] leading-relaxed tracking-[0.14em] text-stone/50">

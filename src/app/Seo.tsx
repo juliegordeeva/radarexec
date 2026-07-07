@@ -1,16 +1,27 @@
 import { Helmet } from 'react-helmet-async';
 
-export function Seo() {
+export const SITE_URL = 'https://bureau.radarexec.ru';
+
+interface SeoProps {
+  title: string;
+  description: string;
+  path: string;
+}
+
+export function Seo({ title, description, path }: SeoProps) {
+  const canonical = `${SITE_URL}${path === '/' ? '' : path}`;
+
   return (
     <Helmet>
-      <title>
-        РАДАР EXECUTIVE— партнёрство лучших для решения сложных, точечных, кризисных и трансформационных задач для умных руководителей и их топ-команд
-      </title>
-      <meta
-        name="description"
-        content="РАДАР EXECUTIVE работает со сложными управленческими ситуациями: повышение слаженности топ-команды, антикризисные преобразования, оценка эффективность и автоматизация существующих процессов, управление знаниями организации, укрепление перераспределённых и мультипоколенческих команд, стратегические сессии по бизнес-моделированию, управление кризисными сценариями через гонки РАДАР (RADAR Races)."
-      />
       <html lang="ru" />
+      <title>{title}</title>
+      <meta name="description" content={description} />
+      <link rel="canonical" href={canonical} />
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
+      <meta property="og:url" content={canonical} />
+      <meta property="og:locale" content="ru_RU" />
     </Helmet>
   );
 }

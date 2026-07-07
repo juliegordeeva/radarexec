@@ -1,113 +1,101 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { CTA_MAILTO } from '@/lib/contact';
-import { navItems } from '@/content/footer';
+import { primaryNav } from '@/content/navigation';
 import { Button } from '@/components/ui/Button';
-import { cn, scrollToSection } from '@/lib/utils';
-
-const SECTION_THEMES: Record<string, 'dark' | 'light'> = {
-  hero: 'dark',
-  context: 'light',
-  formats: 'dark',
-  practices: 'light',
-  'radar-races': 'dark',
-  contact: 'light',
-};
+import { cn } from '@/lib/utils';
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const firstLinkRef = useRef<HTMLAnchorElement>(null);
+  const location = useLocation();
 
   useEffect(() => {
-    const sections = Object.keys(SECTION_THEMES)
-      .map((id) => document.getElementById(id))
-      .filter(Boolean) as HTMLElement[];
+    setMenuOpen(false);
+  }, [location.pathname]);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible?.target.id && SECTION_THEMES[visible.target.id]) {
-          setTheme(SECTION_THEMES[visible.target.id]);
-        }
-      },
-      { threshold: [0.2, 0.5], rootMargin: '-80px 0px -40% 0px' },
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    document.body.style.overflow = 'hidden';
+    firstLinkRef.current?.focus();
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setMenuOpen(false);
+        toggleRef.current?.focus();
+      }
+    };
+    document.addEventListener('keydown', onKeyDown);
+
+    return () => {
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [menuOpen]);
+
+  const navLinkClass = ({ isActive }: { isActive: boolean }) =>
+    cn(
+      'font-mono text-xs uppercase tracking-[0.14em] transition-colors hover:text-champagne',
+      isActive ? 'text-champagne' : 'text-stone-light',
     );
 
-    sections.forEach((s) => observer.observe(s));
-    return () => observer.disconnect();
-  }, []);
-
-  const isDark = theme === 'dark';
-
-  const handleNav = (href: string) => {
-    scrollToSection(href);
-    setMenuOpen(false);
-  };
-
   return (
-    <header
-      className={cn(
-        'fixed inset-x-0 top-0 z-50 transition-colors duration-500',
-        isDark ? 'bg-graphite-deep/90 text-ivory' : 'bg-ivory/95 text-graphite-deep',
-        'backdrop-blur-sm border-b',
-        isDark ? 'border-ivory/5' : 'border-graphite-deep/5',
-      )}
-    >
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-ivory/10 bg-graphite-deep/95 text-ivory backdrop-blur-sm">
       <div className="mx-auto flex max-w-content items-center justify-between px-5 py-5 md:px-10 xl:px-20">
-        <a
-          href="#hero"
-          onClick={(e) => {
-            e.preventDefault();
-            scrollToSection('#hero');
-          }}
-          className="font-mono text-sm uppercase tracking-[0.2em]"
-        >
-          RADAR EXEC
-        </a>
+        <Link to="/" className="font-mono text-sm uppercase tracking-[0.2em] text-ivory">
+          RADAR EXECUTIVE
+        </Link>
 
-        <nav className="hidden items-center gap-8 lg:flex">
-          {navItems.map((item) => (
-            <button
-              key={item.href}
-              type="button"
-              onClick={() => handleNav(item.href)}
-              className="font-mono text-xs uppercase tracking-[0.14em] text-stone transition-colors hover:text-champagne"
-            >
+        <nav aria-label="Основная навигация" className="hidden items-center gap-8 lg:flex">
+          {primaryNav.map((item) => (
+            <NavLink key={item.to} to={item.to} end={item.to === '/'} className={navLinkClass}>
               {item.label}
-            </button>
+            </NavLink>
           ))}
         </nav>
 
         <div className="hidden lg:block">
-          <Button variant="secondary" theme={isDark ? 'dark' : 'light'} href={CTA_MAILTO}>
+          <Button variant="secondary" theme="dark" href={CTA_MAILTO}>
             Обсудить задачу
           </Button>
         </div>
 
         <button
+          ref={toggleRef}
           type="button"
-          className="font-mono text-xs uppercase tracking-[0.14em] lg:hidden"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Меню"
+          className="min-h-[44px] font-mono text-xs uppercase tracking-[0.14em] lg:hidden"
+          onClick={() => setMenuOpen((v) => !v)}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
         >
           {menuOpen ? 'Закрыть' : 'Меню'}
         </button>
       </div>
 
       {menuOpen && (
-        <div className="fixed inset-0 top-[72px] z-40 flex flex-col gap-6 bg-graphite-deep px-8 py-12 text-ivory lg:hidden">
-          {navItems.map((item) => (
-            <button
-              key={item.href}
-              type="button"
-              onClick={() => handleNav(item.href)}
-              className="text-left font-mono text-sm uppercase tracking-[0.14em]"
+        <div
+          id="mobile-menu"
+          className="fixed inset-0 top-[73px] z-40 flex flex-col gap-2 bg-graphite-deep px-8 py-10 text-ivory lg:hidden"
+        >
+          {primaryNav.map((item, i) => (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              end={item.to === '/'}
+              ref={i === 0 ? firstLinkRef : undefined}
+              className={({ isActive }) =>
+                cn(
+                  'min-h-[44px] py-2 text-left font-mono text-sm uppercase tracking-[0.14em]',
+                  isActive ? 'text-champagne' : 'text-ivory',
+                )
+              }
             >
               {item.label}
-            </button>
+            </NavLink>
           ))}
-          <Button variant="secondary" theme="dark" href={CTA_MAILTO} fullWidth>
+          <Button variant="secondary" theme="dark" href={CTA_MAILTO} fullWidth className="mt-4">
             Обсудить задачу
           </Button>
         </div>

@@ -1,6 +1,32 @@
+import { Link } from 'react-router-dom';
 import { footerContent } from '@/content/footer';
 import { ThinLine } from '@/components/ui/ThinLine';
 import { Container } from '@/components/ui/Container';
+
+const linkClass = 'font-sans text-sm text-stone-light transition-colors hover:text-ivory';
+
+function FooterLink({ href, label }: { href: string; label: string }) {
+  const isExternal = href.startsWith('http') || href.startsWith('mailto:') || href.endsWith('.html');
+
+  if (isExternal) {
+    const external = href.startsWith('http');
+    return (
+      <a
+        href={href}
+        className={linkClass}
+        {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+      >
+        {label}
+      </a>
+    );
+  }
+
+  return (
+    <Link to={href} className={linkClass}>
+      {label}
+    </Link>
+  );
+}
 
 export function Footer() {
   return (
@@ -22,12 +48,7 @@ export function Footer() {
               <ul className="space-y-2">
                 {column.links.map((link) => (
                   <li key={link.label}>
-                    <a
-                      href={link.href}
-                      className="font-sans text-sm text-stone-light transition-colors hover:text-ivory"
-                    >
-                      {link.label}
-                    </a>
+                    <FooterLink href={link.href} label={link.label} />
                   </li>
                 ))}
               </ul>
@@ -38,7 +59,7 @@ export function Footer() {
         <ThinLine className="my-10" />
 
         <div className="flex flex-col gap-2 font-mono text-xs text-stone md:flex-row md:justify-between">
-          <span>© RADAR EXEC</span>
+          <span>© РАДАР EXECUTIVE</span>
           <span>{footerContent.legal}</span>
         </div>
       </Container>
