@@ -177,7 +177,7 @@ export const formatsContent: Record<Locale, FormatsContent> = {
 
 export const featuredFormatIds = [
   'unified-top-team',
+  'redistributed-teams',
   'strategic-sessions',
-  'knowledge-management',
   'radar-races',
 ];

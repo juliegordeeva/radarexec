@@ -1,7 +1,9 @@
 import type { FormatItem } from '@/content/types';
+import { formatDiagrams } from '@/content/formatDiagrams';
 import { useLocale } from '@/i18n';
 import { Button } from './Button';
 import { CTA_MAILTO } from '@/lib/contact';
+import { assetUrl } from '@/lib/utils';
 
 interface FormatCardProps {
   format: FormatItem;
@@ -13,10 +15,23 @@ const labels = {
 } as const;
 
 export function FormatCard({ format }: FormatCardProps) {
-  const t = labels[useLocale()];
+  const locale = useLocale();
+  const t = labels[locale];
+  const diagram = formatDiagrams[format.id];
 
   return (
     <article className="flex h-full flex-col border border-champagne/20 bg-graphite-light/40 p-6 md:p-8">
+      {diagram && (
+        <div className="mb-6 overflow-hidden border border-champagne/15 bg-graphite-deep/40">
+          <img
+            src={assetUrl(diagram.src)}
+            alt={diagram.alt[locale]}
+            className="w-full object-cover object-center"
+            loading="lazy"
+          />
+        </div>
+      )}
+
       <span className="font-mono text-label uppercase tracking-[0.14em] text-champagne/70">
         {format.number}
       </span>
