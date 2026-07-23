@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <title>РАДАР EXECUTIVE — обзор бюро</title>
+  <style>
+    @page { size: A4; margin: 18mm 16mm 20mm; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: #151515;
+      background: #F4F0E8;
+      font-family: "Manrope", "Helvetica Neue", Arial, sans-serif;
+      font-size: 10.5pt;
+      line-height: 1.55;
+    }
+    h1, h2, h3 {
+      font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+      font-weight: 500;
+      line-height: 1.15;
+      margin: 0 0 0.4em;
+    }
+    h1 { font-size: 26pt; letter-spacing: -0.01em; }
+    h2 { font-size: 18pt; margin-top: 0; }
+    h3 { font-size: 13pt; }
+    p { margin: 0 0 0.7em; }
+    ul { margin: 0.2em 0 0.8em; padding-left: 1.1em; }
+    li { margin-bottom: 0.25em; }
+    .cover {
+      background: #111111;
+      color: #F4F0E8;
+      padding: 28mm 14mm 22mm;
+      margin: -18mm -16mm 10mm;
+      page-break-after: always;
+    }
+    .brand {
+      font-family: "IBM Plex Mono", "Courier New", monospace;
+      font-size: 9pt;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #C6AA74;
+      margin-bottom: 18mm;
+    }
+    .cover h1 { color: #F4F0E8; font-size: 28pt; max-width: 92%; }
+    .cover .sub { color: #B7B0A6; max-width: 88%; margin-top: 8mm; font-size: 11pt; }
+    .cover .meta {
+      margin-top: 22mm;
+      font-family: "IBM Plex Mono", "Courier New", monospace;
+      font-size: 8pt;
+      letter-spacing: 0.08em;
+      color: #9D9A93;
+      line-height: 1.8;
+    }
+    .note {
+      border: 1px solid #C6AA74;
+      padding: 3mm 4mm;
+      margin: 8mm 0 0;
+      font-size: 9pt;
+      color: #C6AA74;
+    }
+    .section { margin: 0 0 9mm; page-break-inside: avoid; }
+    .section.break { page-break-before: always; }
+    .eyebrow {
+      font-family: "IBM Plex Mono", "Courier New", monospace;
+      font-size: 8pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #9D9A93;
+      margin-bottom: 2mm;
+    }
+    .label {
+      font-family: "IBM Plex Mono", "Courier New", monospace;
+      font-size: 7.5pt;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #9D9A93;
+      display: inline-block;
+      margin-right: 1.5mm;
+    }
+    .num {
+      font-family: "IBM Plex Mono", "Courier New", monospace;
+      font-size: 8pt;
+      color: #B99A63;
+      letter-spacing: 0.08em;
+      min-width: 8mm;
+      display: inline-block;
+    }
+    .item {
+      display: flex;
+      gap: 4mm;
+      padding: 2.5mm 0;
+      border-bottom: 1px solid rgba(198, 170, 116, 0.28);
+    }
+    .item:last-child { border-bottom: none; }
+    .card {
+      border: 1px solid rgba(198, 170, 116, 0.35);
+      padding: 4mm 4.5mm;
+      margin: 0 0 3.5mm;
+      page-break-inside: avoid;
+      background: rgba(255,255,255,0.35);
+    }
+    .card-head { display: flex; gap: 3mm; align-items: baseline; margin-bottom: 2mm; }
+    .card .meta {
+      font-family: "IBM Plex Mono", "Courier New", monospace;
+      font-size: 7.5pt;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #B99A63;
+      margin: 2mm 0 0;
+    }
+    .expert {
+      border-top: 1px solid rgba(198, 170, 116, 0.35);
+      padding: 3.5mm 0;
+      page-break-inside: avoid;
+    }
+    .expert .role { color: #4B463F; margin-bottom: 1.5mm; }
+    .tags { margin-top: 3mm; }
+    .tag {
+      display: inline-block;
+      font-family: "IBM Plex Mono", "Courier New", monospace;
+      font-size: 7.5pt;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #4B463F;
+      border: 1px solid rgba(198, 170, 116, 0.4);
+      padding: 1.2mm 2.5mm;
+      margin: 0 1.5mm 1.5mm 0;
+    }
+    .contact-box {
+      background: #111111;
+      color: #F4F0E8;
+      padding: 8mm 7mm;
+      margin-top: 4mm;
+    }
+    .contact-box h2 { color: #F4F0E8; }
+    .contact-box a { color: #C6AA74; text-decoration: none; }
+    .contact-box .row {
+      font-family: "IBM Plex Mono", "Courier New", monospace;
+      font-size: 9pt;
+      letter-spacing: 0.04em;
+      margin: 2mm 0 0;
+      color: #C6AA74;
+    }
+    .footer-line {
+      margin-top: 6mm;
+      font-size: 8pt;
+      color: #9D9A93;
+      border-top: 1px solid rgba(198, 170, 116, 0.3);
+      padding-top: 3mm;
+    }
+  </style>
+</head>
+<body>
+  <header class="cover">
+    <div class="brand">РАДАР EXECUTIVE</div>
+    <h1>Помогаем собственникам и топ-командам принимать согласованные решения в период изменений</h1>
+    <p class="sub">Проводим стратегические сессии, диагностируем системы управления и знаний, помогаем командам восстановить координацию после реструктуризации.</p>
+    <p class="sub">Сначала разбираем ситуацию, затем подбираем команду экспертов и формат работы.</p>
+    <div class="meta">
+      Экспертное партнёрское бюро для собственников, руководителей, директоров и топ-команд<br/>
+      Сайт: https://bureau.radarexec.ru · Почта: prof@jgordeeva.ru · Telegram: @Prof_jouls
+    </div>
+    <div class="note">
+      Документ для рассылки: полная информация с сайта bureau.radarexec.ru —
+      для случаев, когда корпоративная сеть ограничивает доступ к сайту.
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="eyebrow">Ситуации</div>
+    <h2>С чем к нам обращаются</h2>
+    <p>Мы подключаемся, когда цена управленческой ошибки высока, а решение нужно принять согласованно.</p>
+    <div class="item"><span class="num">01</span><p>Руководители не могут договориться о приоритетах.</p></div><div class="item"><span class="num">02</span><p>После реструктуризации нарушилась координация в команде.</p></div><div class="item"><span class="num">03</span><p>Критические знания держатся на отдельных сотрудниках.</p></div><div class="item"><span class="num">04</span><p>Нужен внешний взгляд на сложную управленческую ситуацию.</p></div>
+  </section>
+
+  <section class="section break">
+    <div class="eyebrow">Форматы и практики</div>
+    <h2>Форматы работы под разные управленческие задачи</h2>
+    <p>Мы не предлагаем универсальную программу. Разбираем ситуацию и собираем формат под задачу, уровень команды и чувствительность вопроса.</p>
+    
+      <article class="card">
+        <div class="card-head"><span class="num">01</span><h3>Топ-команда как единый управленческий контур</h3></div>
+        <p><span class="label">Ситуация</span> Сильные руководители тянут в разные стороны: функции защищают свои приоритеты, решения теряют скорость, ответственность уходит в стыки.</p>
+        <p><span class="label">Что делаем</span> Помогаем топ-команде договориться об общей повестке, ролях, правилах принятия решений и дисциплине исполнения.</p>
+        <p class="meta">Трёхдневная стратегическая сессия · Собственники и топ-команды</p>
+      </article>
+      <article class="card">
+        <div class="card-head"><span class="num">02</span><h3>Стратегические модули антикризисной трансформации</h3></div>
+        <p><span class="label">Ситуация</span> Команде нужна не дискуссия, а понятный план: приоритеты, решения, ответственность и следующий цикл действий.</p>
+        <p><span class="label">Что делаем</span> Проектируем и модерируем сессии так, чтобы на выходе был рабочий план от «как есть сейчас» к «как будет лучше».</p>
+        <p class="meta">Двухнедельные стратегические модули · Собственники, директора, топ-команды</p>
+      </article>
+      <article class="card">
+        <div class="card-head"><span class="num">03</span><h3>Оценка систем управления знаниями</h3></div>
+        <p><span class="label">Ситуация</span> Критические знания, методологии и практики держатся на отдельных людях и уходят вместе с ними.</p>
+        <p><span class="label">Что делаем</span> Диагностируем, как компания сохраняет и передаёт экспертизу, и показываем, что нужно закрепить в системе.</p>
+        <p class="meta">Тридцатидневная диагностика · Компании, которые теряют экспертизу</p>
+      </article>
+      <article class="card">
+        <div class="card-head"><span class="num">04</span><h3>Перераспределённые команды после реструктуризации</h3></div>
+        <p><span class="label">Ситуация</span> После сокращений и слияний руководители управляют командами, которые стали больше, сложнее и разнороднее.</p>
+        <p><span class="label">Что делаем</span> Помогаем восстановить координацию: ясность ролей, новые правила коммуникации и бережную работу с нагрузкой.</p>
+        <p class="meta">Практический курс · Руководители изменившихся команд</p>
+      </article>
+      <article class="card">
+        <div class="card-head"><span class="num">05</span><h3>Мультипоколенческие команды</h3></div>
+        <p><span class="label">Ситуация</span> В одной команде — разные ожидания от руководителя, разная скорость коммуникации и разное отношение к автономии и технологиям.</p>
+        <p><span class="label">Что делаем</span> Под руководством коуча (ICF) переводим различия в согласованные правила совместной работы.</p>
+        <p class="meta">Обучающий корпоративный проект · Смешанные по возрасту команды</p>
+      </article>
+      <article class="card">
+        <div class="card-head"><span class="num">06</span><h3>ГОНКИ РАДАР (RADAR Races) + стратегическая сессия</h3></div>
+        <p><span class="label">Ситуация</span> На словах команда описывает себя правильно, но под давлением действует иначе.</p>
+        <p><span class="label">Что делаем</span> День 1 — гоночная среда как живая модель поведения под давлением. День 2 — стратегическая сессия «как есть — как будет лучше».</p>
+        <p class="meta">Двухдневный формат · Лидеры и топ-команды</p>
+      </article>
+  </section>
+
+  <section class="section break">
+    <div class="eyebrow">Как мы работаем</div>
+    <h2>Начинаем не с продукта, а с вашей ситуации</h2>
+    <p>Что именно нарушено в управлении? Где теряется скорость? Почему решения не превращаются в действия? Ответы на эти вопросы определяют формат работы.</p>
+    <div class="item"><span class="num">01</span><div><h3>Разбираем ситуацию</h3><p>Обсуждаем задачу с собственником, директорами или руководителем изменений.</p></div></div><div class="item"><span class="num">02</span><div><h3>Определяем задачу и результат</h3><p>Договариваемся, что именно нужно изменить и как будет виден результат.</p></div></div><div class="item"><span class="num">03</span><div><h3>Подбираем команду и формат</h3><p>Собираем экспертов и выбираем формат под вашу ситуацию.</p></div></div><div class="item"><span class="num">04</span><div><h3>Проводим работу и фиксируем шаги</h3><p>Проводим работу и оставляем понятный план дальнейших действий.</p></div></div>
+  </section>
+
+  <section class="section">
+    <div class="eyebrow">Что меняется</div>
+    <h2>Что меняется в управлении после работы</h2>
+    <p>Мы не раскрываем детали клиентских ситуаций. Но эффект нашей работы виден там, где компания принимает решения, распределяет ответственность и действует.</p>
+    <div class="item"><span class="num">01</span><div><h3>Топ-команда работает как единый контур</h3><p>Снижается конкуренция функций, появляется общая повестка, уточняются роли и принципы принятия решений.</p></div></div><div class="item"><span class="num">02</span><div><h3>Антикризисная сессия превращается в план действий</h3><p>Участники выходят не с набором идей, а с согласованными приоритетами, ответственностью и логикой следующего цикла.</p></div></div><div class="item"><span class="num">03</span><div><h3>Знания перестают зависеть от отдельных людей</h3><p>Компания видит, где теряется экспертиза, какие практики нужно сохранить и как передавать критическое знание внутри системы.</p></div></div><div class="item"><span class="num">04</span><div><h3>Перераспределённые команды получают новую управленческую рамку</h3><p>Руководители осознанно работают с нагрузкой, коммуникацией, ожиданиями и зонами ответственности после изменений.</p></div></div><div class="item"><span class="num">05</span><div><h3>Разные поколения работают продуктивнее</h3><p>Различия в коммуникации, технологиях и ожиданиях переводятся в согласованный план работы, а не в скрытое напряжение.</p></div></div>
+  </section>
+
+  <section class="section break">
+    <div class="eyebrow">Эксперты</div>
+    <h2>Команда практик РАДАР EXECUTIVE</h2>
+    <p>РАДАР EXECUTIVE — не список консультантов с рынка и не бренд одного человека. Это экосистема практик, которую мы бережно собираем с 2006 года. Под каждую задачу собирается команда экспертов с нужной специализацией.</p>
+    <p><em>Юлия Гордеева — основатель РАДАР EXECUTIVE, директор разработки практики бизнес-моделирования и архитектор кросс-культурного и кросс-функционального подхода. Её роль — видеть бизнес-ситуацию целиком: модель, лидерскую команду, экономику решений и человеческую сложность изменений. При этом РАДАР EXECUTIVE остаётся командным брендом.</em></p>
+    
+      <article class="expert">
+        <h3>Юлия Гордеева</h3>
+        <p class="role">Основатель, директор разработки · Бизнес-моделирование управленческих процессов</p>
+        <p><span class="label">Образование</span> Лингвистика, финансы, управление, MBA, бизнес-психология и организационное консультирование, коучинг, продюсирование.</p>
+        <p><span class="label">Опыт</span></p>
+        <ul><li>2010–2022 — руководитель международных корпоративных программ обучения IBS Plekhanov.</li><li>2022 — наст. время — руководитель консалтинговых и обучающих практик для среднего и крупного бизнеса.</li></ul>
+      </article>
+      <article class="expert">
+        <h3>Олег Емих</h3>
+        <p class="role">Директор разработки · Управление образовательными системами</p>
+        <p><span class="label">Образование</span> Кандидат технических наук.</p>
+        <p><span class="label">Опыт</span></p>
+        <ul><li>2006–2014 — руководитель корпоративной академии.</li><li>2006–2024 — директор альянса «Бизнес-консалтинга».</li><li>2022 — наст. время — заместитель директора Школы управления Финансового университета при Правительстве РФ.</li></ul>
+      </article>
+      <article class="expert">
+        <h3>Ольга Гордеева</h3>
+        <p class="role">Директор разработки · Управление продуктом, продуктовый подход</p>
+        <p><span class="label">Образование</span> Магистр управления проектами (Россия). Магистр Business Administration (SKEMA, Франция). Магистр организационного консультирования (Россия). Магистр Counseling (The University of Manchester, Великобритания).</p>
+        <p><span class="label">Опыт</span></p>
+        <ul><li>2024 — наст. время — директор по продукту инвестиционного банка.</li><li>2014–2024 — руководитель продуктовой аналитики в трёх крупных российских и международных банках.</li></ul>
+      </article>
+      <article class="expert">
+        <h3>Валерия Липова</h3>
+        <p class="role">Директор разработки · Оценка эффективности бизнеса</p>
+        <p><span class="label">Образование</span> Юрист, продюсер.</p>
+        <p><span class="label">Опыт</span></p>
+        <ul><li>Более 10 лет на позициях CBDO / Head of E-commerce. Десятки проектов в e-commerce, travel tech, B2B, e-grocery и на маркетплейсах: Яндекс, МТС Travel, Moldretail Group.</li></ul>
+      </article>
+      <article class="expert">
+        <h3>Лада Кузминская</h3>
+        <p class="role">Директор разработки · Маркетинг, PR, GR</p>
+        <p><span class="label">Образование</span> Метрология, экономика и управление, международное управление, MBA.</p>
+        <p><span class="label">Опыт</span></p>
+        <ul><li>Более 12 лет в управлении образовательными системами, сотрудничестве с государственными организациями, развитии нового бизнеса в сфере образования и кооперации с индустриальными партнёрами.</li></ul>
+      </article>
+      <article class="expert">
+        <h3>Елизавета Сарычева</h3>
+        <p class="role">Директор разработки · Лидерская устойчивость</p>
+        <p><span class="label">Образование</span> Менеджмент (туризм), управление организацией (Франция, магистр), коучинг (ICF).</p>
+        <p><span class="label">Опыт</span></p>
+        <ul><li>Два проекта Олимпийских игр, два проекта FIFA (2014–2025), 10 лет в международном консалтинге ICG Inc. для миссии Airbus.</li></ul>
+      </article>
+  </section>
+
+  <section class="section break">
+    <div class="eyebrow">Международный опыт</div>
+    <h2>Международный опыт в разных культурных контекстах</h2>
+    <p>РАДАР EXECUTIVE работает с руководителями в разных культурах и в разных частях света. Сессии ведём на трёх языках: русском, английском, французском.</p><p>География проектов — Латинская Америка, СНГ, MENA, Юго-Восточная Азия. Работаем с мультикультурными и распределёнными командами. Международный опыт для нас — это умение услышать контекст и перевести различия в синергетический эффект.</p>
+    <p class="meta" style="font-family:IBM Plex Mono,monospace;font-size:9pt;letter-spacing:.12em;color:#B99A63;">
+      RU · EN · FR
+    </p>
+    <div class="tags"><span class="tag">Работа на трёх языках</span><span class="tag">Межкультурная работа</span><span class="tag">Международные управленческие команды</span></div>
+  </section>
+
+  <section class="section">
+    <div class="contact-box">
+      <h2>Обсудим управленческую задачу</h2>
+      <p>Опишите ситуацию в свободной форме — мы ответим в течение 12 часов и предложим либо проект, либо точечный первый шаг — знакомство.</p>
+      <p class="row">Email: <a href="mailto:prof@jgordeeva.ru">prof@jgordeeva.ru</a></p>
+      <p class="row">Telegram: @Prof_jouls</p>
+      <p class="row">Сайт: https://bureau.radarexec.ru</p>
+    </div>
+    <p class="footer-line">
+      РАДАР EXECUTIVE · Конфиденциальная работа с управленческими задачами высокого значения ·
+      Документ сформирован для офлайн-рассылки
+    </p>
+  </section>
+</body>
+</html>
